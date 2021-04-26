@@ -5,14 +5,14 @@ const addBooksHandler = (request,h) => {
     const{name, year, author, summary, publisher, pageCount, readPage, reading} = request.payload;
 
     const id = nanoid(16);
-    const finished = true;
+    let finished;
     if(pageCount === readPage)
     {
-        const finished = true;
+        finished = true;
     }
     else if(pageCount!==readPage)
     {
-        const finished = false;
+        finished = false;
     }
     const insertedAt = new Date().toISOString();
     const updatedAt = insertedAt;
@@ -172,7 +172,7 @@ const editBookByIdHandler = (request,h) => {
 const deleteBooksByIdHandler = (request,h)=>{
     const {bookId} = request.params;
 
-    const index = books.findIndex((book)=>book.id === bookId);
+    const index = books.findIndex((book)=>book.id === bookId    );
     if(index !== -1)
     {
         books.splice(index,1);
